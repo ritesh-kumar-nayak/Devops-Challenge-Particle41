@@ -6,7 +6,7 @@ SimpleTimeService is a lightweight microservice that returns the current timesta
 
 ## Authors
 
-- [@octokatherine](https://github.com/ritesh-kumar-nayak)
+- [@Ritesh Kumar Nayak](https://github.com/ritesh-kumar-nayak)
 
 
 ## Documentation

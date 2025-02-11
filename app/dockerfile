@@ -1,0 +1,18 @@
+FROM python:3.11-slim AS base
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# Setup working directory
+WORKDIR /app
+
+# Install requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# dev stage
+FROM base AS dev
+COPY . .
+ENV FLASK_ENV=development
+ENV FLASK_ENV=time_service.py
+CMD ["flask", "run", "--host=0.0.0.0", "--port=3000"]

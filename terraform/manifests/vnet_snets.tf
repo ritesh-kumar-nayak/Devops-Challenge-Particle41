@@ -24,3 +24,17 @@ resource "azurerm_subnet" "public-subnet" {
   resource_group_name  = azurerm_resource_group.particle41-rg.name
 
 }
+
+## Subnet and NSG Association
+resource "azurerm_subnet_network_security_group_association" "associate_private_snet_nsg" {
+  for_each                  = var.private_subnets
+  subnet_id                 = azurerm_subnet.private-snet[each.key].id
+  network_security_group_id = azurerm_network_security_group.private-snet-nsg.id
+
+}
+
+resource "azurerm_subnet_network_security_group_association" "associate_public_snet_nsg" {
+  for_each                  = var.public_subnets
+  subnet_id                 = azurerm_subnet.public-subnet[each.key].id
+  network_security_group_id = azurerm_network_security_group.public-snet-nsg.id
+}

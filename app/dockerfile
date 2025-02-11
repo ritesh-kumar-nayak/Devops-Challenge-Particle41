@@ -3,16 +3,31 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends curl && \
     rm -rf /var/lib/apt/lists/*
 
-# Setup working directory
+# Create a non-root user and group
+RUN useradd --create-home appuser
+
+# Set the working directory
 WORKDIR /app
 
+# Change ownership of /app to the new user
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user
+USER appuser
+
+# Set path to include user local bin
+ENV PATH="/home/appuser/.local/bin:$PATH"
+
+# Copy requirements 
+COPY --chown=appuser:appuser requirements.txt .
+
 # Install requirements
-COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # dev stage
 FROM base AS dev
-COPY . .
+COPY --chown=appuser:appuser . .
 ENV FLASK_ENV=development
-ENV FLASK_ENV=time_service.py
+ENV FLASK_APP=time_service.py
+
 CMD ["flask", "run", "--host=0.0.0.0", "--port=3000"]

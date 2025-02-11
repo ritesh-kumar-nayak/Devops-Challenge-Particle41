@@ -16,10 +16,10 @@ SimpleTimeService is a lightweight microservice that returns the current timesta
 Since the Docker image is already pushed to Docker Hub, you can run it directly without building it.
 
 1️⃣ Pull the Docker Image
-docker pull ritesh1999/simple-time-service
+``` docker pull ritesh1999/simple-time-service ```
 
 2️⃣ Run the Container
-docker run -p 3000:3000 ritesh1999/simple-time-service:latest
+``` docker run -p 3000:3000 ritesh1999/simple-time-service:latest ```
 
 Now, the service is running on http://localhost:3000 🎉
 ## API Reference

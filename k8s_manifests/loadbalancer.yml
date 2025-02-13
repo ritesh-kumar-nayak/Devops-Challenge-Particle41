@@ -6,7 +6,7 @@ metadata:
     app: time-service
 spec:
   type: LoadBalancer  # Expose via Public Load Balancer
-  loadBalancerIP: <your-lb-public-ip>  # Replace with actual LB IP
+  loadBalancerIP: 172.178.59.11  # Replace with actual LB IP
   selector:
     app: time-service
   ports:

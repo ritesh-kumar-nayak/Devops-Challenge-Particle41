@@ -20,3 +20,4 @@ resource "azurerm_kubernetes_cluster" "particle41-aks-cluster" {
 
   }
 }
+#az aks get-credentials --resource-group particle41-rg --name particle41-aks-cluster - use this command to configure aks localy

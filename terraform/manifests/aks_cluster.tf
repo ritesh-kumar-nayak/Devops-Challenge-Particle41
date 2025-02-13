@@ -7,7 +7,7 @@ resource "azurerm_kubernetes_cluster" "particle41-aks-cluster" {
     node_count     = 2
     vm_size        = "Standard_DS2_v2"
     vnet_subnet_id = azurerm_subnet.private-snet[var.selected_subnet_key].id
-    
+
   }
   identity {
     type = "SystemAssigned"
@@ -16,7 +16,7 @@ resource "azurerm_kubernetes_cluster" "particle41-aks-cluster" {
   network_profile {
     network_plugin = "azure"
     service_cidr   = "10.0.4.0/24"
-    dns_service_ip = "10.0.4.10"   
+    dns_service_ip = "10.0.4.10"
 
   }
 }

@@ -1,10 +1,10 @@
-resource "azurerm_public_ip" "particle41-public-ip" {
-  name                = var.lb_public_ip
-  location            = azurerm_resource_group.particle41-rg.location
-  resource_group_name = azurerm_resource_group.particle41-rg.name
-  allocation_method   = "Static"
-  sku                 = "Standard"
-}
+# resource "azurerm_public_ip" "particle41-public-ip" {
+#   name                = var.lb_public_ip
+#   location            = azurerm_resource_group.particle41-rg.location
+#   resource_group_name = azurerm_resource_group.particle41-rg.name
+#   allocation_method   = "Static"
+#   sku                 = "Standard"
+# }
 
 
 resource "azurerm_lb" "particle41-lb" {
@@ -14,8 +14,8 @@ resource "azurerm_lb" "particle41-lb" {
   sku                 = "Standard"
 
   frontend_ip_configuration {
-    name                 = "PublicFrontend"
-    public_ip_address_id = azurerm_public_ip.particle41-public-ip.id
+    name      = "PublicFrontend"
+    subnet_id = azurerm_subnet.public-subnet[var.selected_public_subnet_key].id # Deployed LB in Public Subnet
   }
 }
 

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: time-service-lb
+  labels:
+    app: time-service
+spec:
+  type: LoadBalancer  # Expose via Public Load Balancer
+  loadBalancerIP: <your-lb-public-ip>  # Replace with actual LB IP
+  selector:
+    app: time-service
+  ports:
+    - protocol: TCP
+      port: 3000  # Publicly exposed port
+      targetPort: 3000  # Internal AKS service port
